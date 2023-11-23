@@ -14,12 +14,13 @@ const Header = () => {
       <div className="mx-4 md:mx-20 lg:mx-44">
         <nav className="flex justify-between items-center my-2 py-2">
           <div
-            className="p-2 rounded-md font-extralight text-3xl hover:bg-black hover:text-white"
+            className="p-2 rounded-md font-extralight text-3xl hover:bg-black hover:text-white cursor-pointer"
             onClick={handleLogoClick}
           >
-            <span className="font-extrabold">K</span>ostera.
+            <span className="font-extrabold cursor-pointer">K</span>
+            ostera.
           </div>
-          <div className="flex flex-row gap-12">
+          <div className="flex flex-row space-x-10">
             <Button variant="ghost" onClick={handleBerandaClick}>
               Beranda
             </Button>
