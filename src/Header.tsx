@@ -5,8 +5,8 @@ const Header = () => {
   const navigate = useNavigate();
   const handleLogoClick = () => navigate("/");
   const handleBerandaClick = () => navigate("/");
-  const handleCariClick = () => navigate("/cari");
-  const handleFavoritClick = () => navigate("/favorit");
+  const handleCariClick = () => navigate("/cari-kost");
+  const handleFavoritClick = () => navigate("/favorit-kost");
   const handleLoginClick = () => navigate("/login");
 
   return (
@@ -24,7 +24,7 @@ const Header = () => {
               Beranda
             </Button>
             <Button variant="ghost" onClick={handleCariClick}>
-              Cari Kos
+              Cari Kost
             </Button>
             <Button variant="ghost" onClick={handleFavoritClick}>
               Favorit

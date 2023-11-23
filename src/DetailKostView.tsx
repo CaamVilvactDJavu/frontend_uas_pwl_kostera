@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
-const DetailKosView = () => {
+const DetailKostView = () => {
   return (
     <main className="rounded-3xl mx-4 md:mx-20 lg:mx-40 mt-6 mb-6 p-6 space-y-6">
       <div className="flex flex-row justify-center gap-12">
         <div className="flex flex-col gap-4">
-          <Img src={"/images/images-1.jpg"} width={350} height={211} />
+          <Img src={"/images/images-1.jpg"} width={350} height={211} />{" "}
           <Card className="w-[350px]">
             <CardHeader>
               <CardTitle>Harga Sewa</CardTitle>
@@ -58,7 +58,7 @@ const DetailKosView = () => {
         </div>
         <div className="flex flex-col">
           <p className="outline-black">Wanita</p>
-          <h1 className="text-2xl">Kos Anggrek Airan Raya, Lampung Selatan</h1>
+          <h1 className="text-2xl">Kost Anggrek Airan Raya, Lampung Selatan</h1>
           <h2 className="text-xl font-bold">Kec. Jati Agung</h2>
 
           <div className="py-4">
@@ -82,7 +82,7 @@ const DetailKosView = () => {
 
           <div className="py-4">
             <h2 className="text-xl font-bold border-b-2 border-black">
-              Peraturan Kos
+              Peraturan Kost
             </h2>
             <p>Akses 24 Jam</p>
             <p>Khusus Mahasiswa & Karyawan</p>
@@ -92,7 +92,7 @@ const DetailKosView = () => {
 
           <div className="py-4">
             <h2 className="text-xl font-bold border-b-2 border-black">
-              Lokasi Kos
+              Lokasi Kost
             </h2>
             <Img src={"/images/images-1.jpg"} width={350} height={211} />
           </div>
@@ -102,4 +102,4 @@ const DetailKosView = () => {
   );
 };
 
-export default DetailKosView;
+export default DetailKostView;
