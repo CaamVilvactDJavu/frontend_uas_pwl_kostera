@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { useParams } from "react-router-dom";
 import useKost from "@/hooks/useKost";
-import ImageVerifier from "@/hooks/imageVerifier";
+import useImageValid from "@/hooks/useImageValid";
 import home from "@/assets/home.png";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
@@ -25,7 +25,7 @@ const DetailKostView = () => {
 
   const { data, error, isLoading } = useKost({ id: id });
 
-  const isImageValid = ImageVerifier(data?.image_url);
+  const isImageValid = useImageValid(data?.image_url);
 
   return (
     <>
