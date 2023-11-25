@@ -16,7 +16,7 @@ const App = () => {
       <>
         <Route element={<MainWrapper />}>
           <Route path="/" element={<Beranda />} />
-          <Route path="/detail-kost" element={<DetailKostView />} />
+          <Route path="/detail-kost/:id" element={<DetailKostView />} />
           <Route path="/cari-kost" element={<CariKostView />} />
           <Route path="/favorit-kost" element={<FavoritKostView />} />
         </Route>

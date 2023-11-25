@@ -1,16 +1,35 @@
 import { useEffect, useState } from "react";
 
-const useImageVerifier = (imageUrl: string) => {
-  const [isValid, setIsValid] = useState(false);
+const imageVerifier = (imageUrl: string) => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log("Image URL:", imageUrl);
+
     const img = new Image();
+
+    img.onload = () => {
+      console.log("Image loaded successfully.");
+      setIsLoaded(true);
+      setHasError(false);
+    };
+
+    img.onerror = () => {
+      console.log("Failed to load image.");
+      setIsLoaded(false);
+      setHasError(true);
+    };
+
     img.src = imageUrl;
-    img.onload = () => setIsValid(true);
-    img.onerror = () => setIsValid(false);
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
   }, [imageUrl]);
 
-  return isValid;
+  return isLoaded && !hasError;
 };
 
-export default useImageVerifier;
+export default imageVerifier;

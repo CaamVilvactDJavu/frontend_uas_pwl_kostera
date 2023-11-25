@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import home from "@/assets/home.png";
 import { Kost } from "@/models/Kost";
-import imageVerifier from "@/hooks/imageVerifier";
+import useImageVerifier from "@/hooks/imageVerifier";
 import {
   Card,
   CardContent,
@@ -14,7 +14,7 @@ const CardView: React.FC<{
   kost: Kost;
 }> = ({ kost }) => {
   const navigate = useNavigate();
-  const isImageVerifier = imageVerifier(kost.image_url);
+  const isImageVerifier = useImageVerifier(kost.image_url);
 
   return (
     <Card

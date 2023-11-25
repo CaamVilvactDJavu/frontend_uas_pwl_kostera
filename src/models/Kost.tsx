@@ -2,6 +2,7 @@ export interface Kost {
   id: number;
   name: string;
   price: number;
+  gender: string;
   specification: string;
   rule: string;
   address: string;
