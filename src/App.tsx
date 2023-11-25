@@ -4,11 +4,11 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import MainWrapper from "./MainWrapper";
-import Beranda from "./Beranda";
-import DetailKostView from "./DetailKostView";
-import { CariKostView } from "./CariKostView";
-import FavoritKostView from "./FavoritKostView";
+import Beranda from "./pages/Beranda";
+import MainWrapper from "./layouts/MainWrapper";
+import DetailKostView from "./views/DetailKostView";
+import { CariKostView } from "./views/CariKostView";
+import FavoritKostView from "./views/FavoritKostView";
 
 const App = () => {
   const routes = createBrowserRouter(
