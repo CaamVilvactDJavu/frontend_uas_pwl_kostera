@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import home from "@/assets/home.png";
 import { Kost } from "@/models/Kost";
+<<<<<<< HEAD
 import imageVerifier from "@/hooks/imageVerifier";
+=======
+import useImageValid from "@/hooks/useImageValid";
+>>>>>>> c25604285d4606b2c1b519f64929d5ee7fc7de58
 import {
   Card,
   CardContent,
@@ -14,7 +18,11 @@ const CardView: React.FC<{
   kost: Kost;
 }> = ({ kost }) => {
   const navigate = useNavigate();
+<<<<<<< HEAD
   const isImageVerifier = imageVerifier(kost.image_url);
+=======
+  const isImageValid = useImageValid(kost.image_url);
+>>>>>>> c25604285d4606b2c1b519f64929d5ee7fc7de58
 
   return (
     <Card
@@ -27,8 +35,13 @@ const CardView: React.FC<{
       </CardHeader>
       <CardContent className="flex justify-center">
         <img
+<<<<<<< HEAD
           src={isImageVerifier ? kost.image_url : home}
           className="rounded-xl w-full h-full"
+=======
+          src={isImageValid ? kost.image_url : home}
+          className="object-contain w-36 h-40"
+>>>>>>> c25604285d4606b2c1b519f64929d5ee7fc7de58
           alt={kost?.name}
         />
       </CardContent>
