@@ -4,9 +4,9 @@ import Header from "./Header";
 
 const MainWrapper = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div>
+      <div className="flex-grow">
         <Outlet />
       </div>
       <Footer />
