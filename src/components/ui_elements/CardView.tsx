@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Icon } from "@iconify/react";
 
 const CardView: React.FC<{
   kost: Kost;
@@ -22,8 +23,20 @@ const CardView: React.FC<{
       onClick={() => navigate(`/detail-kost/${kost?.id}`)}
     >
       <CardHeader>
-        <CardTitle>{kost?.name}</CardTitle>
-        <CardDescription>{kost?.address}</CardDescription>
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-col justify-start">
+            <CardTitle>{kost?.name}</CardTitle>
+            <CardDescription>{kost?.address}</CardDescription>
+          </div>
+          <div className="flex items-center">
+            <CardDescription>
+              <span className="inline-flex items-center gap-2">
+                <Icon icon="ph:star-fill" color="#ffb000" />
+                <span className="font-bold">{kost?.rating} / 5</span>
+              </span>
+            </CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="flex justify-center">
         <img

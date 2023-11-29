@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 type Inputs = {
   name: string;
   price: number;
+  rating: number;
   gender: string;
   specification: string;
   rule: string;
@@ -25,6 +26,7 @@ const CreateKostView = () => {
     console.log(data);
     try {
       data.price = Number(data.price);
+      data.rating = Number(data.rating);
       await axios.post("api/v1/kost/", data);
       mutate("api/v1/kost/");
       navigate("/");
@@ -59,6 +61,13 @@ const CreateKostView = () => {
               type="number"
               id="price"
               {...register("price", { required: true })}
+            />
+
+            <Label htmlFor="rating">Rating</Label>
+            <Input
+              type="number"
+              id="rating"
+              {...register("rating", { required: true })}
             />
 
             <Label htmlFor="gender">Gender</Label>

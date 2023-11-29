@@ -4,6 +4,8 @@ const Footer = () => {
   const navigate = useNavigate();
   const handleCariClick = () => navigate("/cari-kost");
   const handleFavoritClick = () => navigate("/favorit-kost");
+  const handleKebijakanPrivasiClick = () => navigate("/kebijakan-privasi-kost");
+  const handleSyaratKetentuanClick = () => navigate("/syarat-ketentuan-kost");
 
   return (
     <footer className="footer p-10 bg-black text-neutral-content">
@@ -19,8 +21,12 @@ const Footer = () => {
       </nav>
       <nav>
         <header className="footer-title">Kebijakan</header>
-        <a className="link link-hover">Kebijakan & Privasi</a>
-        <a className="link link-hover">Syarat & Ketentuan</a>
+        <a className="link link-hover" onClick={handleKebijakanPrivasiClick}>
+          Kebijakan & Privasi
+        </a>
+        <a className="link link-hover" onClick={handleSyaratKetentuanClick}>
+          Syarat & Ketentuan
+        </a>
       </nav>
       <nav>
         <header className="footer-title">Sosial Media</header>

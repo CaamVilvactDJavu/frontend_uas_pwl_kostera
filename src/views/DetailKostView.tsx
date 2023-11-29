@@ -81,7 +81,7 @@ const DetailKostView = () => {
                 </CardFooter>
               </Card>
             </div>
-            <div className="flex flex-col w-1/4">
+            <div className="flex flex-col">
               <div className="mb-2">
                 <span className="font-bold bg-black text-white px-4 py-2 rounded-md">
                   {data?.gender}

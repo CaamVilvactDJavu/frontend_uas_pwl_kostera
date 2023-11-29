@@ -1,5 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,17 +31,48 @@ const Header = () => {
             <span className="font-extrabold cursor-pointer">K</span>
             ostera.
           </div>
-          <div className="flex flex-row space-x-10">
-            <Button variant="ghost" onClick={handleBerandaClick}>
-              Beranda
-            </Button>
-            <Button variant="ghost" onClick={handleCariClick}>
-              Cari Kost
-            </Button>
-            <Button variant="ghost" onClick={handleFavoritClick}>
-              Favorit
-            </Button>
-            <Button onClick={handleLoginClick}>Login</Button>
+
+          <div className="flex">
+            <div className="hidden md:flex">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem className="space-x-4">
+                    <Button variant="ghost" onClick={handleBerandaClick}>
+                      Beranda
+                    </Button>
+                    <Button variant="ghost" onClick={handleCariClick}>
+                      Cari Kost
+                    </Button>
+                    <Button variant="ghost" onClick={handleFavoritClick}>
+                      Favorit
+                    </Button>
+                    <Button onClick={handleLoginClick}>Login</Button>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
+          </div>
+
+          <div className="md:hidden ml-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <div className="flex flex-col">
+                  <Button variant="ghost" onClick={handleBerandaClick}>
+                    Beranda
+                  </Button>
+                  <Button variant="ghost" onClick={handleCariClick}>
+                    Cari Kost
+                  </Button>
+                  <Button variant="ghost" onClick={handleFavoritClick}>
+                    Favorit
+                  </Button>
+                  <Button onClick={handleLoginClick}>Login</Button>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </nav>
       </div>
