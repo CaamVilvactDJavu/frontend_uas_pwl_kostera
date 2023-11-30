@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const imageVerifier = (imageUrl: string) => {
+export const ImageVerifier = (imageUrl: string) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
@@ -14,7 +14,6 @@ const imageVerifier = (imageUrl: string) => {
       setIsLoaded(true);
       setHasError(false);
     };
-
     img.onerror = () => {
       console.log("Failed to load image.");
       setIsLoaded(false);
@@ -31,5 +30,3 @@ const imageVerifier = (imageUrl: string) => {
 
   return isLoaded && !hasError;
 };
-
-export default imageVerifier;

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import home from "@/assets/home.png";
 import { Kost } from "@/models/Kost";
-import ImageVerifier from "@/hooks/imageVerifier";
+import { ImageVerifier } from "@/hooks/ImageVerifier";
 import {
   Card,
   CardContent,
@@ -48,7 +48,7 @@ const CardView: React.FC<{
       <CardContent>
         <CardDescription>
           <div className="mb-4">
-            <span className="font-bold text-white bg-black py-2 px-4 rounded-md">
+            <span className="font-bold text-white bg-slate-800 py-2 px-4 rounded-md">
               {kost?.gender}
             </span>
           </div>

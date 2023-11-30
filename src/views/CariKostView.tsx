@@ -4,10 +4,17 @@ import useKosts from "@/hooks/useKosts";
 import { Kost } from "@/models/Kost";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ErrorMessageView from "./ErrorMessageView";
+import Loading from "@/components/ui_elements/Loading";
+import Pagination from "@/layouts/Pagination";
 
 const CariKostView = () => {
   const { data, error, isLoading } = useKosts();
   const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 8;
 
   const filteredData = data?.filter((kost: Kost) => {
     const lowercaseSearchTerm = searchTerm.toLowerCase().replace(/\s/g, ""); // Remove spaces
@@ -22,46 +29,53 @@ const CariKostView = () => {
     );
   });
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData?.length / itemsPerPage) || 1;
+
+  const handlePageChange = (page: number) => setCurrentPage(page);
+
+  const handleSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+    setCurrentPage(1);
+  };
+
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="text-center text-3xl font-bold">
-          <p>Loading</p>
-          <span className="loading loading-spinner loading-lg"></span>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return <div>Error : {error.message}</div>;
+    <ErrorMessageView />;
   }
 
   return (
     <>
       {isLoading ? (
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center text-3xl font-bold">
-            <p>Loading</p>
-            <span className="loading loading-spinner loading-lg"></span>
-          </div>
-        </div>
+        <Loading />
       ) : error ? (
-        <div>Error : {error.message}</div>
+        <ErrorMessageView />
       ) : (
         <main className="rounded-3xl mx-4 md:mx-20 lg:mx-40 mt-6 mb-6 p-6 space-y-6">
           <div className="flex flex-row w-1/3 gap-2">
             <Input
               placeholder="Cari/Booking Kost (nama, alamat, harga, jenis kelamin)"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
             />
             <Button>Submit</Button>
           </div>
           <div className="mt-8 grid gap-10 lg:grid-cols-4 md:grid-cols-2 grid-rows ">
-            {filteredData?.map((kost: Kost) => (
+            {currentItems?.map((kost: Kost) => (
               <CardView key={kost.id} kost={kost} />
             ))}
+          </div>
+          <div className="flex items-center justify-center mt-4">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </main>
       )}

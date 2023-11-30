@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { useParams } from "react-router-dom";
 import useKost from "@/hooks/useKost";
-import ImageVerifier from "@/hooks/imageVerifier";
+import { ImageVerifier } from "@/hooks/ImageVerifier";
 import home from "@/assets/home.png";
 import { Label } from "@radix-ui/react-label";
 import {
@@ -19,6 +19,8 @@ import {
 } from "@radix-ui/react-select";
 import { Button } from "@/components/ui/button";
 import { CalendarForm } from "@/CalenderForm";
+import ErrorMessageView from "./ErrorMessageView";
+import Loading from "@/components/ui_elements/Loading";
 
 const DetailKostView = () => {
   const { id = "" } = useParams();
@@ -30,14 +32,9 @@ const DetailKostView = () => {
   return (
     <>
       {isLoading ? (
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center text-3xl font-bold">
-            <p>Loading</p>
-            <span className="loading loading-spinner loading-lg"></span>
-          </div>
-        </div>
+        <Loading />
       ) : error ? (
-        <div>Error: {error.message}</div>
+        <ErrorMessageView />
       ) : (
         <main className="mx-4 md:mx-20 lg:mx-44 py-6 shadow-2xl relative">
           <div className="flex flex-col md:flex-row justify-center">

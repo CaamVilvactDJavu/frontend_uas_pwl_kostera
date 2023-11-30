@@ -4,6 +4,8 @@ import CardView from "@/components/ui_elements/CardView";
 import { Kost } from "@/models/Kost";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import ErrorMessageView from "@/views/ErrorMessageView";
+import Loading from "@/components/ui_elements/Loading";
 
 const Beranda = () => {
   const { data, error, isLoading } = useKosts();
@@ -18,32 +20,20 @@ const Beranda = () => {
     .slice(0, 4);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="text-center text-3xl font-bold">
-          <p>Loading</p>
-          <span className="loading loading-spinner loading-lg"></span>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return <div>Error : {error.message}</div>;
+    return <ErrorMessageView />;
   }
 
   return (
     <>
       <Carousel />
       {isLoading ? (
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center text-3xl font-bold">
-            <p>Loading</p>
-            <span className="loading loading-spinner loading-lg"></span>
-          </div>
-        </div>
+        <Loading />
       ) : error ? (
-        <div>Error : {error.message}</div>
+        <ErrorMessageView />
       ) : (
         <div className="mx-4 md:mx-20 lg:mx-44 mt-6 mb-6">
           <div className="flex flex-col">
