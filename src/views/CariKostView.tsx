@@ -3,7 +3,6 @@ import CardView from "@/components/ui_elements/CardView";
 import useKosts from "@/hooks/useKosts";
 import { Kost } from "@/models/Kost";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
 import Pagination from "@/layouts/Pagination";
@@ -63,7 +62,6 @@ const CariKostView = () => {
               value={searchTerm}
               onChange={(e) => handleSearch(e.target.value)}
             />
-            <Button>Submit</Button>
           </div>
           <div className="mt-8 grid gap-10 lg:grid-cols-4 md:grid-cols-2 grid-rows ">
             {currentItems?.map((kost: Kost) => (

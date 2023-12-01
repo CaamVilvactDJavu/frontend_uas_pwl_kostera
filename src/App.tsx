@@ -12,11 +12,13 @@ import FavoritKostView from "./views/FavoritKostView";
 import CreateKostView from "./views/CreateKostView";
 import SyaratKetentuanKostView from "./views/SyaratKetentuanKostView";
 import KebijakanPrivasiKostView from "./views/KebijakanPrivasiKostView";
+import Login from "./auth/Login";
 
 const App = () => {
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <>
+        <Route path="/login" element={<Login />} />
         <Route element={<MainWrapper />}>
           <Route path="/" element={<Beranda />} />
           <Route path="/create-kost" element={<CreateKostView />} />
