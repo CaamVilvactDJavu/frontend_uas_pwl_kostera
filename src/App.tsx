@@ -4,21 +4,23 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Beranda from "./pages/Beranda";
-import MainWrapper from "./layouts/MainWrapper";
-import DetailKostView from "./views/DetailKostView";
-import CariKostView from "./views/CariKostView";
-import FavoritKostView from "./views/FavoritKostView";
-import CreateKostView from "./views/CreateKostView";
-import SyaratKetentuanKostView from "./views/SyaratKetentuanKostView";
-import KebijakanPrivasiKostView from "./views/KebijakanPrivasiKostView";
-import Login from "./auth/Login";
+import Beranda from "@/pages/Beranda";
+import MainWrapper from "@/layouts/MainWrapper";
+import DetailKostView from "@/views/DetailKostView";
+import CariKostView from "@/views/CariKostView";
+import FavoritKostView from "@/views/FavoritKostView";
+import CreateKostView from "@/views/CreateKostView";
+import SyaratKetentuanKostView from "@/views/SyaratKetentuanKostView";
+import KebijakanPrivasiKostView from "@/views/KebijakanPrivasiKostView";
+import Login from "@/auth/Login";
+import Register from "@/auth/Register";
 
 const App = () => {
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route element={<MainWrapper />}>
           <Route path="/" element={<Beranda />} />
           <Route path="/create-kost" element={<CreateKostView />} />
