@@ -23,12 +23,12 @@ const CardView: React.FC<{
       onClick={() => navigate(`/detail-kost/${kost?.id}`)}
     >
       <CardHeader>
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-col justify-start">
+        <div>
+          <div>
             <CardTitle>{kost?.name}</CardTitle>
             <CardDescription>{kost?.address}</CardDescription>
           </div>
-          <div className="flex items-center">
+          <div>
             <CardDescription>
               <span className="inline-flex items-center gap-2">
                 <Icon icon="ph:star-fill" color="#ffb000" />
@@ -46,17 +46,15 @@ const CardView: React.FC<{
         />
       </CardContent>
       <CardContent>
-        <CardDescription>
-          <div className="mb-4">
-            <span className="font-bold text-white bg-slate-800 py-2 px-4 rounded-md">
-              {kost?.gender}
-            </span>
-          </div>
-          <div>
-            <span className="font-bold">Rp. </span>
-            {kost?.price}
-          </div>
-        </CardDescription>
+        <div className="mb-4">
+          <span className="font-bold text-white bg-slate-800 py-2 px-4 rounded-md">
+            {kost?.gender}
+          </span>
+        </div>
+        <div>
+          <span className="font-bold">Rp. </span>
+          {kost?.price}/Tahun
+        </div>
       </CardContent>
     </Card>
   );

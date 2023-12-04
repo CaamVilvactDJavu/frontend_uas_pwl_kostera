@@ -3,14 +3,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { toast } from "sonner";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
-  const handleLoginClick = () => navigate("/Login");
+  const handleLoginClick = () => navigate("/login");
 
   const handleRegister = async (e: any) => {
     e.preventDefault();
@@ -21,16 +22,25 @@ const Register = () => {
         password,
       });
 
-      console.log(username)
-      console.log(password)
       const { token, message } = response.data;
       if (token) {
         localStorage.setItem("token", token);
 
-        navigate("/Login");
-
+        navigate("/login");
       } else {
-        console.error("Registered failed:", message);
+        if (message.includes("Username must be between 5 and 16 characters")) {
+          toast.error("Username must be between 5 and 16 characters");
+        } else if (
+          message.includes(
+            "Username already exists. Please choose a different one.",
+          )
+        ) {
+          toast.error(
+            "Username already exists. Please choose a different one.",
+          );
+        } else {
+          toast.error("Registration failed. Please try again.");
+        }
       }
     } catch (error) {
       console.error("Registered error");
@@ -73,7 +83,7 @@ const Register = () => {
                 type="submit"
                 className="w-full bg-black text-white py-2 rounded hover:bg-slate-800"
               >
-                Sign In
+                Daftar
               </button>
             </form>
             <div className="text-sm mt-3 text-right">

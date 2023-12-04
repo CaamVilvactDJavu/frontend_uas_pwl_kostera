@@ -18,7 +18,7 @@ const Header = () => {
   const handleBerandaClick = () => navigate("/");
   const handleCariClick = () => navigate("/cari-kost");
   const handleFavoritClick = () => navigate("/favorit-kost");
-  const handleLoginClick = () => navigate("/login");
+  const handleLogoutClick = () => navigate("/login");
 
   return (
     <header className="w-full border-b-2 border-neutral-800">
@@ -46,7 +46,9 @@ const Header = () => {
                     <Button variant="ghost" onClick={handleFavoritClick}>
                       Favorit
                     </Button>
-                    <Button onClick={handleLoginClick}>Login</Button>
+                    <Button variant="destructive" onClick={handleLogoutClick}>
+                      Logout
+                    </Button>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
@@ -69,7 +71,9 @@ const Header = () => {
                   <Button variant="ghost" onClick={handleFavoritClick}>
                     Favorit
                   </Button>
-                  <Button onClick={handleLoginClick}>Login</Button>
+                  <Button variant="destructive" onClick={handleLogoutClick}>
+                    Logout
+                  </Button>
                 </div>
               </DropdownMenuContent>
             </DropdownMenu>

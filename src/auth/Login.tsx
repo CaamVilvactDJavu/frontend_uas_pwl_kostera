@@ -68,7 +68,7 @@ const Login = () => {
               type="submit"
               className="w-full bg-black text-white py-2 rounded hover:bg-slate-800"
             >
-              Sign In
+              Login
             </button>
           </form>
           <div className="text-sm mt-3 text-right">

@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@radix-ui/react-select";
 import { Button } from "@/components/ui/button";
-import { CalendarForm } from "@/CalenderForm";
+import { CalendarForm } from "@/components/ui_elements/CalenderForm";
 import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
 
@@ -54,7 +54,7 @@ const DetailKostView = () => {
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <form className="grid w-full items-center gap-4">
+                  <div className="grid w-full items-center gap-4">
                     <div className="flex flex-col space-y-1.5">
                       <Label htmlFor="name">Tanggal Sewa</Label>
                       <CalendarForm />
@@ -70,7 +70,7 @@ const DetailKostView = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                  </form>
+                  </div>
                 </CardContent>
                 <CardFooter className="grid grid-col gap-2">
                   <Button variant="outline">Tanya Pemilik</Button>
