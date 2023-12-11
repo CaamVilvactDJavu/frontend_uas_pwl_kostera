@@ -37,15 +37,17 @@ const FavoritKostView = () => {
       ) : error ? (
         <ErrorMessageView />
       ) : (
-        <div className="mx-4 md:mx-20 lg:mx-44 mt-6 mb-6">
-          <div className="flex flex-col justify-center">
-            <h1 className="text-4xl font-bold pb-4">Favorit</h1>
-            <div className="mt-8 grid gap-10 lg:grid-cols-4 md:grid-cols-2 grid-rows">
+        <main className="mx-4 md:mx-20 lg:mx-40 mt-6 mb-6 p-6">
+          <div className="flex flex-col">
+            <h1 className="text-6xl font-bold pb-4 text-center tracking-widest">
+              Favorit
+            </h1>
+            <div className="mt-8 gap-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 self-center">
               {currentItems?.map((kost: Kost) => (
                 <CardView key={kost.id} kost={kost} />
               ))}
             </div>
-            <div className="flex items-center justify-center mt-4">
+            <div className="grid items-center justify-center mt-4">
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
@@ -53,7 +55,7 @@ const FavoritKostView = () => {
               />
             </div>
           </div>
-        </div>
+        </main>
       )}
     </>
   );

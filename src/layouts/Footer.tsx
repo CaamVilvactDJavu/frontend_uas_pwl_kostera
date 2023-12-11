@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const handleCariClick = () => navigate("/cari-kost");
+  const handleCariClick = () => navigate("/search-kost");
   const handleFavoritClick = () => navigate("/favorit-kost");
   const handleKebijakanPrivasiClick = () => navigate("/kebijakan-privasi-kost");
   const handleSyaratKetentuanClick = () => navigate("/syarat-ketentuan-kost");

@@ -4,37 +4,52 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Beranda from "@/pages/Beranda";
+
 import MainWrapper from "@/layouts/MainWrapper";
+
+import Login from "@/auth/user/Login";
+import Register from "@/auth/user/Register";
+
+import Beranda from "@/pages/Beranda";
 import DetailKostView from "@/views/DetailKostView";
-import CariKostView from "@/views/CariKostView";
+import SearchKostView from "@/views/SearchKostView";
 import FavoritKostView from "@/views/FavoritKostView";
-import CreateKostView from "@/views/CreateKostView";
 import SyaratKetentuanKostView from "@/views/SyaratKetentuanKostView";
 import KebijakanPrivasiKostView from "@/views/KebijakanPrivasiKostView";
-import Login from "@/auth/Login";
-import Register from "@/auth/Register";
-import LoginAdmin from "./auth/LoginAdmin";
+
+import DashboardWrapper from "@/layouts/DashboardWrapper";
+
+import LoginAdmin from "@/auth/admin/LoginAdmin";
+
+import CreateKostView from "@/views/CreateKostView";
+import EditKostView from "@/views/EditKostView";
+import EditKost from "@/views/EditKost";
 
 const App = () => {
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin_login" element={<LoginAdmin />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="admin_login" element={<LoginAdmin />} />
+
+        <Route element={<DashboardWrapper />}>
+          <Route path="create-kost" element={<CreateKostView />} />
+          <Route path="edit-kost-view" element={<EditKostView />} />
+          <Route path="edit-kost/:id" element={<EditKost />} />
+        </Route>
+
         <Route element={<MainWrapper />}>
           <Route path="/" element={<Beranda />} />
-          <Route path="/create-kost" element={<CreateKostView />} />
-          <Route path="/detail-kost/:id" element={<DetailKostView />} />
-          <Route path="/cari-kost" element={<CariKostView />} />
-          <Route path="/favorit-kost" element={<FavoritKostView />} />
+          <Route path="detail-kost/:id" element={<DetailKostView />} />
+          <Route path="search-kost" element={<SearchKostView />} />
+          <Route path="favorit-kost" element={<FavoritKostView />} />
           <Route
-            path="/syarat-ketentuan-kost"
+            path="syarat-ketentuan-kost"
             element={<SyaratKetentuanKostView />}
           />
           <Route
-            path="/kebijakan-privasi-kost"
+            path="kebijakan-privasi-kost"
             element={<KebijakanPrivasiKostView />}
           />
         </Route>

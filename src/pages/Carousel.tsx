@@ -12,7 +12,7 @@ const Carousel = () => {
         </div>
 
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <p className="text-white text-5xl font-extrabold">
+          <p className="text-white text-5xl font-extrabold tracking-widest">
             Mau Cari Atau Booking Kost Dengan Aman dan Mudah?
           </p>
         </div>

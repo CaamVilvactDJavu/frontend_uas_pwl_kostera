@@ -16,9 +16,13 @@ const Header = () => {
   const navigate = useNavigate();
   const handleLogoClick = () => navigate("/");
   const handleBerandaClick = () => navigate("/");
-  const handleCariClick = () => navigate("/cari-kost");
+  const handleCariClick = () => navigate("/search-kost");
   const handleFavoritClick = () => navigate("/favorit-kost");
-  const handleLogoutClick = () => navigate("/login");
+  const handleLogoutClick = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
 
   return (
     <header className="w-full border-b-2 border-neutral-800">

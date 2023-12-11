@@ -1,30 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 
-const LoginAdmin = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLoginClick = () => navigate("/login");
+  const handleRegisterClick = () => navigate("/register");
+  const handleLoginAdminClick = () => navigate("/admin_login");
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      if (localStorage.getItem("role") == "admin") {
+        navigate("/create-kost");
+      } else {
+        navigate("/");
+      }
+    }
+  });
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("api/v1/auth/admin_login", {
+      const response = await axios.post("api/v1/auth/login", {
         username,
         password,
       });
 
       const { token, message } = response.data;
       if (token) {
+        localStorage.setItem("role", "user");
         localStorage.setItem("token", token);
-        navigate("/create-kost");
+        navigate("/");
       } else {
         console.error("Login failed:", message);
         toast.error(message);
@@ -33,15 +45,14 @@ const LoginAdmin = () => {
       console.error("Login error:", error.message);
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="relative flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
         <div className="flex flex-col justify-center p-6 md:p-14">
-          <span className="mb-3 text-4xl font-medium">
-            Selamat Datang, <span className="font-extrabold">Admin</span>
-          </span>
+          <span className="mb-3 text-4xl font-bold">Selamat Datang</span>
           <span className="font-light text-gray-400 mb-8">
-            Masukkan Username dan Password Admin Anda!
+            Masukkan Username dan Password !
           </span>
           <form onSubmit={handleLogin}>
             <div className="py-2">
@@ -74,10 +85,19 @@ const LoginAdmin = () => {
             </button>
           </form>
           <div className="text-sm mt-3 text-right">
-            Kembali ke menu login?{" "}
+            Belum memiliki akun?{" "}
             <span
               className="font-bold cursor-pointer"
-              onClick={handleLoginClick}
+              onClick={handleRegisterClick}
+            >
+              Daftar disini
+            </span>
+          </div>
+          <div className="text-sm mt-3 text-right">
+            Login sebagai admin?{" "}
+            <span
+              className="font-bold cursor-pointer"
+              onClick={handleLoginAdminClick}
             >
               Klik disini
             </span>
@@ -88,4 +108,4 @@ const LoginAdmin = () => {
   );
 };
 
-export default LoginAdmin;
+export default Login;

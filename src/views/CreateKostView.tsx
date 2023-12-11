@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { mutate } from "swr";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 type Inputs = {
   name: string;
@@ -21,7 +23,19 @@ type Inputs = {
 const CreateKostView = () => {
   const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm<Inputs>();
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      if (localStorage.getItem("role") == "admin") {
+        // alert("benar");
+      } else {
+        navigate("/");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
+
+  const { register, handleSubmit, reset } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
     try {
@@ -29,9 +43,11 @@ const CreateKostView = () => {
       data.rating = Number(data.rating);
       await axios.post("api/v1/kost/", data);
       mutate("api/v1/kost/");
-      navigate("/");
+      toast.success("Kost berhasil ditambahkan.");
+      reset();
     } catch (error) {
       console.log(error);
+      toast.error("Kost gagal ditambahkan.");
     }
   };
 
@@ -39,11 +55,9 @@ const CreateKostView = () => {
     <main className="mt-6 mb-6">
       <div className="flex flex-col items-center justify-center py-6">
         <div className="w-full max-w-md">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="font-bold text-2xl underline underline-offset-2">
-              Create New Kost
-            </h1>
-          </div>
+          <h1 className="font-bold text-5xl text-center mb-6">
+            Tambah Kost Baru
+          </h1>
 
           <form
             className="flex flex-col items-start gap-2"
