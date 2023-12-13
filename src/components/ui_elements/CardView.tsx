@@ -26,7 +26,9 @@ const CardView: React.FC<{
         <div>
           <div>
             <CardTitle>{kost?.name}</CardTitle>
-            <CardDescription>{kost?.address}</CardDescription>
+            <CardDescription className="line-clamp-2">
+              {kost?.address}
+            </CardDescription>
           </div>
           <div>
             <CardDescription>
@@ -41,7 +43,7 @@ const CardView: React.FC<{
       <CardContent className="flex justify-center">
         <img
           src={isImageValid ? kost.image_url : home}
-          className="rounded-xl w-full h-full"
+          className="rounded-xl w-full h-[250px]"
           alt={kost?.name}
         />
       </CardContent>

@@ -6,10 +6,24 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ErrorMessageView from "@/views/ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
+import { useEffect } from "react";
 
 const Beranda = () => {
   const { data, error, isLoading } = useKosts();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      const userRole = localStorage.getItem("role");
+      if (userRole === "admin" || userRole === "user") {
+        // toast.success("Berhasil masuk.");
+      } else {
+        navigate("/");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
 
   const handleFavoritClick = () => navigate("/favorit-kost");
 
