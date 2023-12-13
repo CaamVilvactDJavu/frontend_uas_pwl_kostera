@@ -25,8 +25,8 @@ const CreateKostView = () => {
 
   useEffect(() => {
     if (localStorage.getItem("token") != null) {
-      if (localStorage.getItem("role") == "admin") {
-        // alert("benar");
+      if (localStorage.getItem("role") === "admin") {
+        // toast.success("Berhasil Masuk.");
       } else {
         navigate("/");
       }

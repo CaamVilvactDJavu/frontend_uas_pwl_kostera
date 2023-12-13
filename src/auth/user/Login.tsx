@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,11 +12,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleRegisterClick = () => navigate("/register");
-  const handleLoginAdminClick = () => navigate("/admin_login");
+  const handleLoginAdminClick = () => navigate("/admin-login");
 
   useEffect(() => {
     if (localStorage.getItem("token") != null) {
-      if (localStorage.getItem("role") == "admin") {
+      if (localStorage.getItem("role") === "admin") {
         navigate("/create-kost");
       } else {
         navigate("/");
@@ -77,12 +78,12 @@ const Login = () => {
                 />
               </div>
             </div>
-            <button
+            <Button
               type="submit"
               className="w-full bg-black text-white py-2 rounded hover:bg-slate-800"
             >
               Login
-            </button>
+            </Button>
           </form>
           <div className="text-sm mt-3 text-right">
             Belum memiliki akun?{" "}

@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useKost from "@/hooks/useKost";
 import { ImageVerifier } from "@/hooks/ImageVerifier";
 import home from "@/assets/home.png";
@@ -21,8 +21,25 @@ import { Button } from "@/components/ui/button";
 import { CalendarForm } from "@/components/ui_elements/CalenderForm";
 import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
+import { useEffect } from "react";
+import { Kost } from "@/models/Kost";
 
-const DetailKostView = () => {
+const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      const userRole = localStorage.getItem("role");
+      if (userRole === "admin" || userRole === "user") {
+        // toast.success("Berhasil masuk.");
+      } else {
+        navigate(`/detail-kost/${kost?.id}`);
+      }
+    } else {
+      navigate("/login");
+    }
+  }, [kost?.id, navigate]);
+
   const { id = "" } = useParams();
 
   const { data, error, isLoading } = useKost({ id: id });

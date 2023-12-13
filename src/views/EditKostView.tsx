@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import useKosts from "@/hooks/useKosts";
 import { Kost } from "@/models/Kost";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
 import Pagination from "@/layouts/Pagination";
@@ -24,6 +24,19 @@ import {
 
 const EditKostView = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      if (localStorage.getItem("role") === "admin") {
+        // toast.success("Berhasil Masuk.");
+      } else {
+        navigate("/");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
+
   const { data, error, isLoading } = useKosts();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);

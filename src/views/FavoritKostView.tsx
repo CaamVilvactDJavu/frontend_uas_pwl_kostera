@@ -4,9 +4,25 @@ import { Kost } from "@/models/Kost";
 import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
 import Pagination from "@/layouts/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FavoritKostView = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      const userRole = localStorage.getItem("role");
+      if (userRole === "admin" || userRole === "user") {
+        // toast.success("Berhasil masuk.");
+      } else {
+        navigate("/favorit-kost");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
+
   const { data, error, isLoading } = useKosts();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;

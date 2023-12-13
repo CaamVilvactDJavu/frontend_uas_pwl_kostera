@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { axiosInstance } from "@/api/config";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+import { useEffect } from "react";
 
 type Inputs = {
   id: number;
@@ -24,6 +26,18 @@ const EditKost = () => {
   const { id = "" } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      if (localStorage.getItem("role") === "admin") {
+        // toast.success("Berhasil Masuk.");
+      } else {
+        navigate("/");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
 
   const { data, isLoading, error } = useKost({ id: id });
 

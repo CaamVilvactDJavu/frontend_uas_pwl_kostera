@@ -1,9 +1,18 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const DashboardWrapper = () => {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
+
   const menus = [
-    { name: "Dashboard", margin: true },
+    { name: "Beranda", margin: true },
     { name: "Tambah Kost", link: "/create-kost" },
     { name: "Edit Kost", link: "/edit-kost-view" },
   ];
@@ -46,6 +55,9 @@ const DashboardWrapper = () => {
               </h2>
             </Link>
           ))}
+          <Button variant="destructive" onClick={handleLogoutClick}>
+            Logout
+          </Button>
         </div>
       </div>
       <div className="flex-grow m-2">

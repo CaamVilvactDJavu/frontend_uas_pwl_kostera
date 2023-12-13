@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -24,22 +25,20 @@ const Register = () => {
 
       const { token, message } = response.data;
       if (token) {
-        localStorage.setItem("token", token);
-
         navigate("/login");
       } else {
         if (message.includes("Username must be between 5 and 16 characters")) {
-          toast.error("Username must be between 5 and 16 characters");
+          toast.error("Username harus antara 5 sampai 16 karakter.");
         } else if (
           message.includes(
             "Username already exists. Please choose a different one.",
           )
         ) {
           toast.error(
-            "Username already exists. Please choose a different one.",
+            "Username sudah ada. Silahkan gunakan username yang lain.",
           );
         } else {
-          toast.error("Registration failed. Please try again.");
+          toast.error("Pendaftaran gagal. Silahkan coba lagi.");
         }
       }
     } catch (error) {
@@ -79,12 +78,12 @@ const Register = () => {
                   />
                 </div>
               </div>
-              <button
+              <Button
                 type="submit"
                 className="w-full bg-black text-white py-2 rounded hover:bg-slate-800"
               >
                 Daftar
-              </button>
+              </Button>
             </form>
             <div className="text-sm mt-3 text-right">
               Sudah memiliki akun?{" "}

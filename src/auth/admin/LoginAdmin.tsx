@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const LoginAdmin = () => {
   const [username, setUsername] = useState("");
@@ -74,12 +75,12 @@ const LoginAdmin = () => {
                 />
               </div>
             </div>
-            <button
+            <Button
               type="submit"
               className="w-full bg-black text-white py-2 rounded hover:bg-slate-800"
             >
               Login
-            </button>
+            </Button>
           </form>
           <div className="text-sm mt-3 text-right">
             Kembali ke menu login?{" "}

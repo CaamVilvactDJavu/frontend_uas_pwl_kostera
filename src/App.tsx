@@ -31,7 +31,7 @@ const App = () => {
       <>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="admin_login" element={<LoginAdmin />} />
+        <Route path="admin-login" element={<LoginAdmin />} />
 
         <Route element={<DashboardWrapper />}>
           <Route path="create-kost" element={<CreateKostView />} />

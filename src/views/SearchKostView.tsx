@@ -2,12 +2,28 @@ import { Input } from "@/components/ui/input";
 import CardView from "@/components/ui_elements/CardView";
 import useKosts from "@/hooks/useKosts";
 import { Kost } from "@/models/Kost";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
 import Pagination from "@/layouts/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const SearchKostView = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      const userRole = localStorage.getItem("role");
+      if (userRole === "admin" || userRole === "user") {
+        // toast.success("Berhasil masuk.");
+      } else {
+        navigate("/search-kost");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
+
   const { data, error, isLoading } = useKosts();
   const [searchTerm, setSearchTerm] = useState<string>("");
 

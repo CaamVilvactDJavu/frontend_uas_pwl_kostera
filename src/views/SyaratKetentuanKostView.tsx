@@ -1,4 +1,22 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const SyaratKetentuanKostView = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") != null) {
+      const userRole = localStorage.getItem("role");
+      if (userRole === "admin" || userRole === "user") {
+        // toast.success("Berhasil masuk.");
+      } else {
+        navigate("/syarat-ketentuan-kost");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
+
   return (
     <main className="rounded-3xl mx-4 md:mx-20 lg:mx-40 mt-6 mb-6 p-6 space-y-6">
       <div className="flex flex-col justify-center gap-12">
