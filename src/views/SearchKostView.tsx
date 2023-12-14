@@ -86,7 +86,7 @@ const SearchKostView = () => {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-center mt-4">
+          <div className="flex flex-row items-center justify-center mt-4">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

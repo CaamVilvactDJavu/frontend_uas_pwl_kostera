@@ -30,7 +30,7 @@ const Pagination: React.FC<PaginationProps> = ({
     ));
   };
 
-  return <div className="join grid grid-cols-2">{renderPageNumbers()}</div>;
+  return <div className="join grid grid-cols-3">{renderPageNumbers()}</div>;
 };
 
 export default Pagination;

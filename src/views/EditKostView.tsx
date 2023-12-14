@@ -147,7 +147,7 @@ const EditKostView = () => {
                   <td className="py-2 px-4 border-b">
                     <img
                       src={kost?.image_url || home}
-                      className="rounded-xl w-full h-full"
+                      className="rounded-md w-[700px] h-[100px]"
                       alt={kost?.name}
                     />
                   </td>
