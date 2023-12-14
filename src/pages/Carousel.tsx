@@ -1,9 +1,11 @@
+import { Img } from "react-image";
+
 const Carousel = () => {
   return (
     <>
       <div className="carousel w-full relative">
         <div id="slide1" className="carousel-item relative w-full blur-md">
-          <img
+          <Img
             src="/images/images-1.jpeg"
             className="w-full h-full"
             style={{ width: "1920px", height: "562px" }}

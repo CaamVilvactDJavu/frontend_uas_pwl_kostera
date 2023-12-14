@@ -8,6 +8,7 @@ import ErrorMessageView from "./ErrorMessageView";
 import Loading from "@/components/ui_elements/Loading";
 import { useEffect } from "react";
 import { Kost } from "@/models/Kost";
+import { Img } from "react-image";
 
 const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
         <main className="mx-4 md:mx-20 lg:mx-44 py-6 relative">
           <div className="flex flex-col md:flex-col lg:flex-row justify-center">
             <div className="flex flex-col lg:pr-10 md:pr-5">
-              <img
+              <Img
                 src={isImageValid ? data?.image_url : home}
                 className="object-cover rounded-lg"
               />

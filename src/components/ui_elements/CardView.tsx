@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Icon } from "@iconify/react";
+import { Img } from "react-image";
 
 const CardView: React.FC<{
   kost: Kost;
@@ -41,7 +42,7 @@ const CardView: React.FC<{
         </div>
       </CardHeader>
       <CardContent className="flex justify-center">
-        <img
+        <Img
           src={isImageValid ? kost.image_url : home}
           className="rounded-xl w-full h-[250px]"
           alt={kost?.name}

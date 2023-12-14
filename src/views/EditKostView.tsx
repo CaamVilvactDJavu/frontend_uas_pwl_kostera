@@ -21,6 +21,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Img } from "react-image";
 
 const EditKostView = () => {
   const navigate = useNavigate();
@@ -145,7 +146,7 @@ const EditKostView = () => {
                   <td className="py-2 px-4 border-b">{kost?.address}</td>
                   <td className="py-2 px-4 border-b">{kost?.facility}</td>
                   <td className="py-2 px-4 border-b">
-                    <img
+                    <Img
                       src={kost?.image_url || home}
                       className="rounded-md w-[700px] h-[100px]"
                       alt={kost?.name}
