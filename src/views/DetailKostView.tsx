@@ -56,8 +56,8 @@ const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
               <h1 className="text-2xl">{data?.name}</h1>
               <h2 className="text-xl font-bold">{data?.address}</h2>
 
-              <div className="p-2 my-2 rounded-xl border-2">
-                <div className="py-4">
+              <div className="p-2 my-2 rounded-xl shadow-2xl border border-black">
+                <div>
                   <h2 className="text-xl font-bold">Spesifikasi Kamar</h2>
                   <p>{data?.specification}</p>
                 </div>
@@ -71,7 +71,7 @@ const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
                   <h2 className="text-xl font-bold">Peraturan Kost</h2>
                   <p>{data?.rule}</p>
                 </div>
-                <Card className="">
+                <Card>
                   <CardHeader>
                     <CardTitle>Harga Sewa</CardTitle>
                     <p>
@@ -79,8 +79,10 @@ const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
                       {data?.price}/Tahun
                     </p>
                   </CardHeader>
-                  <CardFooter className="grid grid-col gap-2">
-                    <Button>Tanya Pemilik</Button>
+                  <CardFooter className="grid grid-rows">
+                    <Button>
+                      <a href="https://wa.me/6285162614010">Tanya Pemilik</a>
+                    </Button>
                   </CardFooter>
                 </Card>
               </div>

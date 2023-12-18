@@ -185,7 +185,7 @@ const EditKostView = () => {
           onPageChange={handlePageChange}
         />
       </div>
-      <AlertDialog open={deleteDialogOpen} onClose={cancelDelete}>
+      <AlertDialog open={deleteDialogOpen}>
         <AlertDialogTrigger asChild>
           <div></div>
         </AlertDialogTrigger>
@@ -200,7 +200,7 @@ const EditKostView = () => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={cancelDelete}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDelete} variant="destructive">
+            <AlertDialogAction onClick={confirmDelete}>
               Delete
             </AlertDialogAction>
           </AlertDialogFooter>

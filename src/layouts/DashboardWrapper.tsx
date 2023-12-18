@@ -12,7 +12,7 @@ const DashboardWrapper = () => {
   };
 
   const menus = [
-    { name: "Beranda", margin: true },
+    { name: "Beranda", margin: true, link: "/" },
     { name: "Tambah Kost", link: "/create-kost" },
     { name: "Edit Kost", link: "/edit-kost-view" },
   ];
