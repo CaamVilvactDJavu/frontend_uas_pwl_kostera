@@ -13,7 +13,8 @@
 
 1. [Requirements](#requirements)
 2. [How to run](#how-to-run)
-3. [Dependencies](#dependencies)
+3. [Bonus Kinerja Web](#bonus-kinerja-web)
+4. [Dependencies](#dependencies)
 
 ### Requirements
 
@@ -34,6 +35,78 @@ npm install
 ```
 npm run dev
 ```
+
+### Bonus Kinerja Web
+
+#### Optimisasi Gambar: Memastikan gambar yang digunakan di situs web telah dioptimalkan untuk meminimalkan waktu muat halaman.
+
+##### Contoh optimasasi gambar
+
+- Komponen `DetailKostView` adalah salah satu komponen yang telah menyertakan fitur rendering gambar, dan pengoptimalan gambar untuk memastikan pemuatan yang efisien dan meminimalkan waktu buka halaman. Pengoptimalan ini menggunakan custom hook dari `ImageVerifier`, yang memeriksa apakah gambar sudah valid sebelum dilakukan rendering.
+
+  - ImageVerifier Hook\
+    `ImageVerifier` hook adalah hook yang menggunakan `imageUrl` sebagai parameter dan melakukan:
+
+    - Menginisialisasi variabel state (`isLoaded` dan `hasError`) untuk melacak status pemuatan gambar.
+    - Menggunakan `useEffect` untuk membuat objek `Image` dan menyiapkan handle untuk pemuatan gambar dan error.
+    - Memuat gambar dengan URL yang disediakan dan memperbarui variabel state yang sesuai.
+    - Membersihkan event handler pada pelepasan komponen.
+
+  - Implementasinya pada Komponen DetailKostView\
+
+    - `useEffect` digunakan untuk mengontrol otentikasi pengguna.
+    - `useKost` digunakan untuk mengambil data terkait Kost.
+    - `ImageVerifier` digunakan untuk memeriksa validitas URL gambar yang diperoleh dari data yang diambil.
+    - Komponen merender tampilan berbeda berdasarkan status pemuatan dan error.
+
+  - Rendering Gambar\
+    Rendering gambar juga dioptimalkan menggunakan komponen `Img` dari library `react-image`, yang hanya merender gambar jika valid. Jika gambar tidak valid, gambar default (home.png) akan ditampilkan.
+
+#### Penggunaan Caching: Menggunakan teknik caching untuk menyimpan data di sisi klien atau server guna mempercepat waktu muat halaman berikutnya.
+
+##### Contoh penggunaan caching
+
+- Pengambilan Data API dengan `useSWR`\
+   Proyek ini menggunakan library `useSWR` untuk menangani pengambilan data dari API secara efisien. `useSWR` menyediakan cara mudah untuk menyimpan data dalam cache di sisi klien, mengelola loading states, dan menghandle kesalahan .
+
+  - `useKosts` Hook\
+    `useKosts` hook mengambil data dari API endpoint `/api/v1/kost/`. Fungsi `fetcher`, yang didukung oleh Axios, menghandle pengambilan data.
+
+  - `useKost` Hook\
+    `useKost` hook, juga menggunakan `useSWR`, mengambil data berdasarkan parameter `kostId` tertentu dari API endpoint `/api/v1/kost/`.
+
+  - Global State Management menggunakan React Context\
+    React Context digunakan untuk mengelola global state untuk list item. `ListContext` menyediakan fungsi untuk menambah, menghapus, dan menghapus item dari list.
+
+  - Verifikasi Gambar pada `ImageVerifier`\
+    Komponen `ImageVerifier` memastikan penanganan gambar yang tepat dengan memeriksa apakah pemuatan berhasil atau ada kesalahan. Juga menggunakan `onload` dan `onerror` dari objek `Image`.
+
+#### Pengurangan Permintaan HTTP: Meminimalkan jumlah permintaan HTTP yang diperlukan untuk memuat halaman dengan menggabungkan atau mengurangi sumber daya.
+
+##### Contoh pengurangan permintaan HTTP
+
+- Pada komponen `EditKost`, pengurangan request HTTP digunakan untuk meminimalkan jumlah request yang diperlukan untuk memuat halaman secara efisien.
+
+  - Pengambilan Data menggunakan SWR\
+    Library `swr` digunakan untuk pengambilan data dan cache. Fungsi `mutate`, digunakan untuk memungkinkan pembaruan cache setelah request HTTP berhasil, yang mana dapat membuat request tambahan tanpa menambahkannya kembali ke server.
+
+  - Batched Update\
+    Fungsi `mutate` digunakan untuk memperbarui data daftar Kost (`"http://localhost:5173/api/v1/kost/"`) setelah membuat request PUT berhasil. Ini membantu mengurangi request yang tidak perlu dan meningkatkan kinerja aplikasi secara keseluruhan.
+
+#### Meminimalkan Pemanggilan API: Menggabungkan atau meminimalkan pemanggilan API untuk mengurangi waktu respon dan mempercepat tampilan konten.
+
+##### Contoh meminimalkan pemanggilan API
+
+- Dalam project ini kami juga menerapkan strategi untuk meminimalkan panggilan API menggunakan `useSWR` dari library SWR. Hook ini berguna untuk mengambil data dari API endpoint (dalam hal ini `/api/v1/kost/`) dan secara otomatis mengambil ulang data saat komponen dipasang atau saat data tidak valid.
+
+  - SWR Hook\
+    `useSWR` digunakan untuk mengambil data dari API. `useSWR` menyediakan caching, re-fetching, dan pengelolaan state secara langsung. Data di-cache dan diambil ulang hanya jika diperlukan.
+
+  - Rendering Bersyarat\
+    Komponen dirender berdasarkan status `isLoading` dan `error`. Jika data masih dimuat (`isLoading` benar), loading spinner (`<Loading />`) akan ditampilkan. Jika ada error selama panggilan API, maka akan muncul tampilan pesan kesalahan (`<ErrorMessageView />`) dirender.
+
+  - Mutasi Data\
+    Ketika penghapusan data dilakukan (fungsi `confirmDelete`), fungsi `mutate` dari SWR digunakan untuk mengambil kembali data dan memperbarui cache. Dengan cara ini, UI mencerminkan perubahan tanpa perlu memuat ulang satu halaman penuh.
 
 ### Dependencies
 

@@ -9,6 +9,7 @@ import Loading from "@/components/ui_elements/Loading";
 import { useEffect } from "react";
 import { Kost } from "@/models/Kost";
 import { Img } from "react-image";
+import { Icon } from "@iconify/react";
 
 const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
   const navigate = useNavigate();
@@ -55,6 +56,10 @@ const DetailKostView: React.FC<{ kost: Kost }> = ({ kost }) => {
               </div>
               <h1 className="text-2xl">{data?.name}</h1>
               <h2 className="text-xl font-bold">{data?.address}</h2>
+              <span className="inline-flex items-center gap-2">
+                <Icon icon="ph:star-fill" color="#ffb000" />
+                <span className="font-bold">{data?.rating} / 5</span>
+              </span>
 
               <div className="p-2 my-2 rounded-xl shadow-2xl border border-black">
                 <div>
