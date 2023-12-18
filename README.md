@@ -12,7 +12,7 @@
 ## Daftar isi
 
 1. [Requirements](#requirements)
-2. [Cara menjalankan](#cara-menjalankan)
+2. [How to run](#how-to-run)
 3. [Dependencies](#dependencies)
 
 ### Requirements
@@ -21,7 +21,7 @@
 - Node.js v21.1.0
 - npm 10.2.3
 
-### Cara Menjalankan
+### How to run
 
 1. Install Dependencies
 
