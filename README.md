@@ -18,19 +18,31 @@
 
 ### Requirements
 
-- Visual Studio Code
-- Node.js v21.1.0
-- npm 10.2.3
+Visual Studio Code
+Node.js v21.1.0
+npm 10.2.3
 
 ### How to run
 
-1. Install Dependencies
+Clone repository
+
+```
+git clone https://github.com/CaamVilvactDJavu/frontend_uas_pwl_kostera.git
+```
+
+Masuk ke dalam directory
+
+```
+cd frontend_uas_pwl_kostera
+```
+
+Install Dependencies
 
 ```
 npm install
 ```
 
-2. Jalankan Proyek
+Jalankan Proyek
 
 ```
 npm run dev
